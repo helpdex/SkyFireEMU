@@ -4095,6 +4095,17 @@ void AuraEffect::HandleAuraMounted(AuraApplication const *aurApp, uint8 mode, bo
                 creatureEntry = 15665;
         }
 
+    if (spellId == 86458)
+    {
+      if(target->GetTypeId() == TYPEID_PLAYER)
+      {
+        target->Mount(0, 0, GetMiscValue());
+        plr->CastSpell(plr, spellId, true);
+        plr->setInWorgenForm(UNIT_FLAG2_WORGEN_TRANSFORM3);
+      }
+      return;
+    }
+
         CreatureInfo const* ci = ObjectMgr::GetCreatureTemplate(creatureEntry);
         if (!ci)
         {
